@@ -1,0 +1,318 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="Terry Tian,tiantsing@126.com"><meta name="copyright" content="Terry Tian"><meta name="generator" content="Hexo 5.4.2"><meta name="theme" content="hexo-theme-yun"><title>使用Hexo+github建设个人博客教程 | Terry_Tian's Code日志</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/star-markdown-css@0.3.3/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="https://fastly.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+}
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><link rel="icon" type="image/svg+xml" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fastly.jsdelivr.net/npm/" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"tianqing.work","root":"/","title":"庆描淡写的小站","version":"1.10.6","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}.","hits":"${hits} results found","hits_time":"${hits} results found in ${time} ms"},"anonymous_image":"https://cdn.yunyoujun.cn/img/avatar/none.jpg","say":{"api":"https://el-bot-api.vercel.app/api/words/young"},"fireworks":{"colors":null},"vendors":{"host":"https://fastly.jsdelivr.net/npm/","darken":"https://fastly.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><link rel="alternate" href="/atom.xml" title="Terry_Tian's Code日志" type="application/atom+xml"><script>(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();</script><meta name="description" content="前言本片文章主要用来记录搭建Hexo静态博客的过程，用于以后搭建博客更加方便。 主要内容：  列出博客搭建环境+所需工具； 环境的配置与工具的安装简述，以及简单的使用教程，安装Git、Node.js环境以及Hexo框架； 创建Hexo项目，并本地运行查看效果 修改项目配置文件（根目录下的_config.yml文件） 安装Hexo框架主题（推荐：Next或yelee主题，本人用的yelee），对主题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Hexo+github建设个人博客教程">
+<meta property="og:url" content="http://tianqing.work/2017/02/18/%E4%BD%BF%E7%94%A8Hexo-github%E5%BB%BA%E8%AE%BE%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Terry_Tian&#39;s Code日志">
+<meta property="og:description" content="前言本片文章主要用来记录搭建Hexo静态博客的过程，用于以后搭建博客更加方便。 主要内容：  列出博客搭建环境+所需工具； 环境的配置与工具的安装简述，以及简单的使用教程，安装Git、Node.js环境以及Hexo框架； 创建Hexo项目，并本地运行查看效果 修改项目配置文件（根目录下的_config.yml文件） 安装Hexo框架主题（推荐：Next或yelee主题，本人用的yelee），对主题">
+<meta property="og:locale">
+<meta property="og:image" content="http://olg3gwtbm.bkt.clouddn.com/hexo1.jpg">
+<meta property="og:image" content="http://olg3gwtbm.bkt.clouddn.com/hexos.png">
+<meta property="og:image" content="http://olg3gwtbm.bkt.clouddn.com/hexo4040.png">
+<meta property="og:image" content="http://olg3gwtbm.bkt.clouddn.com/github1.png">
+<meta property="og:image" content="http://olg3gwtbm.bkt.clouddn.com/github2.png">
+<meta property="og:image" content="http://olg3gwtbm.bkt.clouddn.com/yuming.png">
+<meta property="og:image" content="http://olg3gwtbm.bkt.clouddn.com/gitset.png">
+<meta property="og:image" content="http://olg3gwtbm.bkt.clouddn.com/gp.png">
+<meta property="article:published_time" content="2017-02-18T07:46:58.000Z">
+<meta property="article:modified_time" content="2022-08-25T14:18:56.812Z">
+<meta property="article:author" content="Terry Tian">
+<meta property="article:tag" content="Git">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="node">
+<meta property="article:tag" content="github">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://olg3gwtbm.bkt.clouddn.com/hexo1.jpg"><script>(function() {
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script><script>// Define global variable
+IconifyProviders = {
+  // Empty prefix: overwrite default API provider configuration
+  '': {
+    // Use custom API first, use Iconify public API as backup
+    resources: [
+        'https://api.iconify.design',
+    ],
+    // Wait for 1 second before switching API hosts
+    rotate: 1000,
+  },
+};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="Table of Contents"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="Overview"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="Terry Tian"><img width="96" loading="lazy" src="/images/head.jpg" alt="Terry Tian"><span class="site-author-status" title="Looking for dawn.">🌑</span></a><div class="site-author-name"><a href="/about/">Terry Tian</a></div><span class="site-name">Terry_Tian's Code日志</span><sub class="site-subtitle">行是知之始，知是行之成。</sub><div class="site-description">terrytian,田庆,庆描淡些</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="Home"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="Archives"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">12</span></a></div><div class="site-state-item"><a href="/categories/" title="Categories"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">7</span></a></div><div class="site-state-item"><a href="/tags/" title="Tags"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">14</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:clipboard-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><span class="icon iconify" data-icon="ri:rss-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/tiantsing" title="GitHub" target="_blank" style="color:#6e5494"><span class="icon iconify" data-icon="ri:github-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://weibo.com/u/3972395740" title="微博" target="_blank" style="color:#E6162D"><span class="icon iconify" data-icon="ri:weibo-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" title="微信公众号" target="_blank" style="color:#1AAD19"><span class="icon iconify" data-icon="ri:wechat-2-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:tiantsing@126.com" title="E-Mail" target="_blank" style="color:#8E71C1"><span class="icon iconify" data-icon="ri:mail-line"></span></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><span class="icon iconify" data-icon="ri:genderless-line"></span></a><a class="links-item hty-icon-button" href="/girls/" title="喜欢的女孩子" style="color:hotpink"><span class="icon iconify" data-icon="ri:women-line"></span></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.1.</span> <span class="toc-text">准备工作</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2"><span class="toc-number">2.</span> <span class="toc-text">开始搭建博客</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E5%8F%8A%E7%AE%80%E5%8D%95%E5%AE%9E%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text">Git下载安装及简单实用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#node-js%E7%9A%84%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85"><span class="toc-number">2.2.</span> <span class="toc-text">node.js的下载安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-number">2.3.</span> <span class="toc-text">Hexo框架的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAHexo%E6%9C%AC%E5%9C%B0%E5%8D%9A%E5%AE%A2"><span class="toc-number">2.4.</span> <span class="toc-text">创建Hexo本地博客</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">3.</span> <span class="toc-text">修改项目配置文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Hexo%E6%A1%86%E6%9E%B6%E4%B8%BB%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">安装Hexo框架主题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9Hexo%E6%A1%86%E6%9E%B6%E4%B8%BB%E9%A2%98"><span class="toc-number">4.1.</span> <span class="toc-text">修改Hexo框架主题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E5%88%B0Github-Pages%E4%B8%8A"><span class="toc-number">5.</span> <span class="toc-text">发布到Github Pages上</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAGithub-Pages%E5%B9%B6SSH%E6%8E%88%E6%9D%83"><span class="toc-number">5.1.</span> <span class="toc-text">创建Github Pages并SSH授权</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%8A%E6%9C%AC%E5%9C%B0%E7%9A%84%E5%8D%9A%E5%AE%A2%E5%86%85%E5%AE%B9%E5%90%8C%E6%AD%A5%E5%88%B0-Github-%E4%B8%8A"><span class="toc-number">5.2.</span> <span class="toc-text">把本地的博客内容同步到 Github 上</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D"><span class="toc-number">5.3.</span> <span class="toc-text">绑定域名</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%91%E8%A1%A8%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0"><span class="toc-number">6.</span> <span class="toc-text">发表一篇文章</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HEXO%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87"><span class="toc-number">7.</span> <span class="toc-text">HEXO插入图片</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">8.</span> <span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8hexo%E5%91%BD%E4%BB%A4"><span class="toc-number">8.1.</span> <span class="toc-text">常用hexo命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C"><span class="toc-number">8.2.</span> <span class="toc-text">最终效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">8.3.</span> <span class="toc-text">参考</span></a></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#0078E7;"><link itemprop="mainEntityOfPage" href="http://tianqing.work/2017/02/18/%E4%BD%BF%E7%94%A8Hexo-github%E5%BB%BA%E8%AE%BE%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Terry Tian,tiantsing@126.com"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="Terry_Tian's Code日志"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">使用Hexo+github建设个人博客教程</h1><div class="post-meta"><div class="post-time"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="Created: 2017-02-18 15:46:58" itemprop="dateCreated datePublished" datetime="2017-02-18T15:46:58+08:00">2017-02-18</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-2-line"></span></span> <time title="Modified: 2022-08-25 22:18:56" itemprop="dateModified" datetime="2022-08-25T22:18:56+08:00">2022-08-25</time></div><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/Hexo/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">Hexo</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/Git/" style="--text-color:#F14E32"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">Git</span></a><a class="tag-item" href="/tags/Hexo/" style="--text-color:#0E83CD"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">Hexo</span></a><a class="tag-item" href="/tags/node/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">node</span></a><a class="tag-item" href="/tags/github/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">github</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本片文章主要用来记录搭建Hexo静态博客的过程，用于以后搭建博客更加方便。</p>
+<p><strong>主要内容：</strong></p>
+<ol>
+<li>列出博客搭建环境+所需工具；</li>
+<li>环境的配置与工具的安装简述，以及简单的使用教程，安装Git、Node.js环境以及Hexo框架；</li>
+<li>创建Hexo项目，并本地运行查看效果</li>
+<li>修改项目配置文件（根目录下的_config.yml文件）</li>
+<li>安装Hexo框架主题（推荐：Next或yelee主题，本人用的yelee），对主题进行配置，主要是修改theme目录下的_config.yml文件</li>
+<li>将本地设置好的Hexo项目发布到Github Pages上（包括绑定自己的域名）（这里会介绍如何写文章）</li>
+<li>总结</li>
+</ol>
+<span id="more"></span> 
+
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>在搭建博客时，你需要做以下准备：</p>
+<ol>
+<li>确定自己的系统为Windows;(因为博主用的系统是Windows10，为了避免浪费您的时间，如果不是Windows系统就不要看了。)</li>
+<li>Git下载，node.js下载。</li>
+</ol>
+<p>本文所使用的环境：</p>
+<ul>
+<li>Windows 10</li>
+<li>Git  version 2.11.1.windows.1</li>
+<li>node.js v6.9.5 LTS</li>
+<li>hexo </li>
+</ul>
+<h1 id="开始搭建博客"><a href="#开始搭建博客" class="headerlink" title="开始搭建博客"></a>开始搭建博客</h1><h2 id="Git下载安装及简单实用"><a href="#Git下载安装及简单实用" class="headerlink" title="Git下载安装及简单实用"></a>Git下载安装及简单实用</h2><p>为什么要在电脑上安装Git呢？我相信大多计算机专业的同学对Git的应该不陌生了，Git可以说是现如今最好用的、最先进的分布式版本控制系统（没有之一）。Git在接下来的环境部署及部署博客到github Pages时都是需要的。大家如果有兴趣可以阅读我的博客（<a target="_blank" rel="noopener" href="http://blog.csdn.net/tianqingdezhuanlan/article/details/51791318">Git的简单使用</a>），对Git进行简单的了解。如果了解Git也没有关系，只要你按照教程一步一步来也可以。</p>
+<p><strong>下载Git</strong></p>
+<p>我们可以在<a target="_blank" rel="noopener" href="https://git-scm.com/downloads">Git的官网</a>下载我们所需要的git，我选择的是最新版的Git Windows X64 版本。</p>
+<p><strong>安装Git</strong></p>
+<p>Git的安装也很简单，就像安装我们平时所需要的软件一样，教程参考：<a target="_blank" rel="noopener" href="http://blog.csdn.net/tianqingdezhuanlan/article/details/51791368">Git的安装</a>。</p>
+<p><strong>Git的简单实用</strong></p>
+<p>初始化一个Git仓库，使用<code>git init</code>命令。</p>
+<p>添加文件到Git仓库，分两步：</p>
+<p>第一步，使用命令<code>git add &lt;file&gt;</code>，注意，可反复多次使用，添加多个文件；</p>
+<p>第二步，使用命令<code>git commit</code>，完成。</p>
+<p>我们在这里不太需要git的命令操作，一般只需要git的的shell窗口进行一些操作。</p>
+<h2 id="node-js的下载安装"><a href="#node-js的下载安装" class="headerlink" title="node.js的下载安装"></a>node.js的下载安装</h2><p><strong>下载</strong></p>
+<p>打开 <a target="_blank" rel="noopener" href="https://nodejs.org/en/">Nodejs</a> 下载页面，选择合适你当前系统版本的安装包（建议使用 LTS 版本的）。</p>
+<p><strong>安装</strong></p>
+<p>双击安装文件 -&gt; 下一步 -&gt; 下一步…</p>
+<p>【具体操作请参考网上的一篇文章：<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/03a76b2e7e00">Node.js安装及环境配置之Windows篇</a>】</p>
+<h2 id="Hexo框架的安装"><a href="#Hexo框架的安装" class="headerlink" title="Hexo框架的安装"></a>Hexo框架的安装</h2><p>首先我们可以看一下<a target="_blank" rel="noopener" href="https://hexo.io/">hexo</a>的官网，了解一下hexo。</p>
+<p><strong>Windows中的安装</strong></p>
+<ol>
+<li><p>打开命令行</p>
+<p>Win+R或者点击开始按钮–&gt;运行–&gt;输入“cmd”;</p>
+<p>用 <strong>Git Bash</strong></p>
+</li>
+<li><p>输入命令</p>
+<p><code>npm install hexo-cli -g</code></p>
+</li>
+</ol>
+<p>输入完命令后就开始了hexo的安装，这里可能需要等待一段时间，时间不确定，只要不报错就可以了。</p>
+<h2 id="创建Hexo本地博客"><a href="#创建Hexo本地博客" class="headerlink" title="创建Hexo本地博客"></a>创建Hexo本地博客</h2><p> 接下来我们在一个本地盘自定义路径中创建一个文件夹作为我的项目文件，我在这里选择了在G盘下新建了一个名为TerryBlog的文件夹，作为我的项目文件，路径为【G:\TerryBlog】.在G盘下，点击鼠标右键–&gt;Git Bash，打开命令输入框。输入命令如下：</p>
+<p>   <code>hexo init TerryBlog        //hexo init +你的项目名称，如我的为TerryBlog</code></p>
+<p> 执行完上述命令后，我们就创建了TerryBlog文件夹，进入刚创建的TerryBlog项目目录，命令操作如下：</p>
+<p>  <code>cd TerryBlog      //进入TerryBlog目录</code></p>
+<p> 或者直接在TerryBlog文件夹下，再点击鼠标右键–&gt;Git Bash，打开命令输入框。再输入以下命令：</p>
+<p>  <code>npm install  </code></p>
+<p> 安装完成之后，【G:\TerryBlog】目录结构是这样的：</p>
+<p>   <img src="http://olg3gwtbm.bkt.clouddn.com/hexo1.jpg" loading="lazy"></p>
+<p>  到此为止，一个博客就已经搭建好了，现在我们启动 hexo 本地服务，看下默认的博客是怎样的，命令如下：</p>
+<p>  <code>hexo s</code></p>
+<p>   <img src="http://olg3gwtbm.bkt.clouddn.com/hexos.png" loading="lazy"></p>
+<p>   <em><strong>在浏览器中输入：<a target="_blank" rel="noopener" href="http://localhost:4000/%E8%BF%9B%E8%A1%8C%E8%AE%BF%E9%97%AE%EF%BC%8C%E6%95%88%E6%9E%9C%E5%9B%BE%E5%A6%82%E4%B8%8B%EF%BC%9A">http://localhost:4000/进行访问，效果图如下：</a></strong></em></p>
+<p>   <img src="http://olg3gwtbm.bkt.clouddn.com/hexo4040.png" loading="lazy"></p>
+<pre><code>** 如果要停止 hexo 服务：在 Git Bash 下按 Ctrl + C即可**
+</code></pre>
+<p>   到这里我们简单的hexo博客基本就完成一部分了！是不是很开心，如果不进行主题美化的话，我们马上就可以有一个自己的博客了。</p>
+<h1 id="修改项目配置文件"><a href="#修改项目配置文件" class="headerlink" title="修改项目配置文件"></a>修改项目配置文件</h1><p>  在这里我们修改的是【G:\TerryBlog】路径下的 <code>_config.yml </code> <strong>站点主题配置</strong>文件，我的配置如下：</p>
+<p>  <strong>注意：修改之前最好备份一下。</strong></p>
+<pre><code># Hexo Configuration
+## Docs: https://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site 这一块区域主要是设置博客的主要说明，需要注意的是：每个冒号后面都是有一个空格，然后再书写自己的内容的
+
+
+title: Terry_Tian Code #网站标题
+subtitle: 行是知之始   知是行之成  #网站副标题
+description: 在山的这边，海的那边，有一只程序猿。。。  #描述
+author: Terry Tian   #博主名字
+avatar: http://olg3gwtbm.bkt.clouddn.com/head.jpg  #博主头像
+email: 1015236187@qq.com   #邮箱
+language: zh-Hans  #语言
+timezone:   #网站时区。Hexo默认使用电脑时区
+
+# URL,这一块一般可以设置的是 url 这个参数，比如我要设置绑定域名的，这里就需要填写我的域名信息
+## If your site is put in a subdirectory, set url as &#39;http://yoursite.com/child&#39; and root as &#39;/child/&#39;
+url: http://mutouspace.cn/
+root: /
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+
+ # Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# Writing
+new_post_name: :title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link: true # Open external links in new tab
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+highlight:
+  enable: true
+  line_number: true
+  auto_detect: false
+  tab_replace:
+
+# Category &amp; Tag
+default_category: uncategorized
+category_map:
+tag_map:
+
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+ date_format: YYYY-MM-DD
+ time_format: HH:mm:ss
+
+ # Pagination
+ ## Set per_page to 0 to disable pagination
+ per_page: 10
+ pagination_dir: page
+
+ # Extensions
+ ## Plugins: https://hexo.io/plugins/
+ ## Themes: https://hexo.io/themes/
+ theme: yelee
+
+ # Deployment
+ ## Docs: https://hexo.io/docs/deployment.html
+ deploy:
+   type: git
+   repo: git@github.com:MuTouTQ/MuTouTQ.github.io.git
+   branch: master
+  
+ search:
+   path: search.xml
+   field: post
+</code></pre>
+<p>   做完这一些之后再在Git Bash 命令框中，输入 <code>hexo s</code> 重新启动服务，在浏览器中输入：<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a>进行访问,查看一下效果。</p>
+<h1 id="安装Hexo框架主题"><a href="#安装Hexo框架主题" class="headerlink" title="安装Hexo框架主题"></a>安装Hexo框架主题</h1><p>  在上一步完成后，你会发现虽然改了一部分配置，但页面还是很吃藕，接下来，咱们就要给咱们的博客美美容了。hexo的主题有很多，大家可以去这里选一下，hexo-theme：<a target="_blank" rel="noopener" href="https://hexo.io/themes/">https://hexo.io/themes/</a>.</p>
+<p>  我选择的是yelee主题：<a target="_blank" rel="noopener" href="https://github.com/MOxFIVE/hexo-theme-yelee">yelee</a></p>
+<p>  还是让 Git Bash 保持在【G:\TerryBlog】目录下，然后输入命令：</p>
+<p>  <code>git clone https://github.com/MOxFIVE/hexo-theme-yelee.git themes/yelee</code></p>
+<p>  这样就在 【G:\TerryBlog\themes】目录下生成了一个 yelee 文件夹，里面有我们刚刚 clone 下来的主题内容。</p>
+<p>  我们现在要修改【G:\TerryBlog】目录下的项目配置文件：_config.yml，把对应的主题目录名改下，主要是将配置中的 theme: yelee修改。</p>
+<p>  <strong>注意：该配置文件中的键值之间一定要有空格，否则轻则没有作用，重则报错，无法启动。</strong></p>
+<p>  更改主题目录名后，我们还要重新生成主题静态内容，继续在 Git Bash 中输入命令输入如下命令：</p>
+<p>   <code>hexo g      //重新生成静态博客的所有内容</code></p>
+<p>   <code>hexo s        //重启 hexo 本地服务</code></p>
+<p>  重新访问：<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a>，看一下效果.</p>
+<h2 id="修改Hexo框架主题"><a href="#修改Hexo框架主题" class="headerlink" title="修改Hexo框架主题"></a>修改Hexo框架主题</h2><p>  上一步完成后，看到的是yelee的默认主题，这里我们可以再次配置一下，修改的是【G:\TerryBlog\themes\yelee】路径下的 <code>_config.yml</code>文件。这里我们可以跟着<a target="_blank" rel="noopener" href="http://moxfive.coding.me/yelee/">Yelee 主题使用说明</a>来修改。</p>
+<h1 id="发布到Github-Pages上"><a href="#发布到Github-Pages上" class="headerlink" title="发布到Github Pages上"></a>发布到Github Pages上</h1><h2 id="创建Github-Pages并SSH授权"><a href="#创建Github-Pages并SSH授权" class="headerlink" title="创建Github Pages并SSH授权"></a>创建Github Pages并SSH授权</h2><p>  现在假设你已经有一个 Gtihub 账号，你还需要一个<strong>特别</strong>的仓库，特别在仓库名就是你的 Github 账号登录名，比如我的用户名是：MuouTQ，那我要创建的仓库名字完整滴填写是：MuouTQ.github.io，具体效果如下图：</p>
+<p>  <img src="http://olg3gwtbm.bkt.clouddn.com/github1.png" loading="lazy"></p>
+<p>  仔细的人可能看到，你的仓库名根本不和你的用户名一样，由于我之前已经创建了一个这样特别的仓库，再创建一个就会提示错误，为了演示方便，所以删了一个T。</p>
+<p>  创建好仓库之后，要本地生成 SSH 秘钥，方便电脑上的 git 软件好提交内容到 Github 上。</p>
+<p>  【具体可以参考网上的一篇文章：<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/a3b4f61d4747">Git安装及SSH Key管理之Windows篇</a>】</p>
+<p>  现在用记事本打开公钥，复制文件中的所有内容。访问：<a target="_blank" rel="noopener" href="https://github.com/settings/ssh">https://github.com/settings/ssh</a>，</p>
+<p>  Title：自己随便取</p>
+<p>  Key：把刚刚复制的都粘贴进来</p>
+<h2 id="把本地的博客内容同步到-Github-上"><a href="#把本地的博客内容同步到-Github-上" class="headerlink" title="把本地的博客内容同步到 Github 上"></a>把本地的博客内容同步到 Github 上</h2><p>   要把本地的静态博客同步到 Github，我们还需要先安装两个跟部署相关的 hexo 插件：</p>
+<p>   <code>cd G:\TerryBlog              //进入TerryBlog项目目录</code></p>
+<pre><code>上一步，我们可以到 G:\TerryBlog 路径下 Git Bash 一下；
+</code></pre>
+<p>  <code>npm/cnpm install hexo-server --save         //创建</code></p>
+<p> <code> npm/cnpm install hexo-deployer-git --save    //安装自动部署发布工具</code></p>
+<p>  编辑TerryBlog的<strong>项目配置文件</strong>：_config.yml</p>
+<p>  官网对此配置的介绍：<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/configuration.html">https://hexo.io/zh-cn/docs/configuration.html</a></p>
+<p>  主要改这里（一般在最后面）：</p>
+<pre><code> # Deployment
+## 这里是重点，这里是修改发布地址，因为我们前面已经加了 SSH 密钥信息在 Github 设置里面了，所以只要我们电脑里面持有那两个密钥文件就可以无需密码地跟 Github 做同步。
+## 需要注意的是这里的 repo 采用的是 ssh 的地址，而不是 https 的。分支我们默认采用 master 分支，以后你翅膀硬了要换其他也无所谓。
+## Docs: https://hexo.io/docs/deployment.html
+  deploy:
+  type: git
+  repo: git@github.com:MuTouTQ/MuTouTQ.github.io.git
+  branch: master
+</code></pre>
+<p>  编辑完项目配置文件后我们需要重新部署：</p>
+<pre><code>cd G:\TerryBlog              //进入TerryBlog项目目录
+
+上一步，我们可以到 G:\TerryBlog 路径下 Git Bash 一下；
+hexo clean//先清除掉已经生成的旧文件
+hexo g //再生成一次静态文件
+hexo s   //在本地预览下
+hexo d   //本地没问题之后，Ctrl + C 停掉本地预览，使用部署命令部署到 Github 上
+</code></pre>
+<p>   <img src="http://olg3gwtbm.bkt.clouddn.com/github2.png" loading="lazy"></p>
+<p>   访问服务器地址进行检查：<a target="_blank" rel="noopener" href="http://mutoutq.github.io/%EF%BC%8C%E8%AF%A5%E8%AE%BF%E9%97%AE%E5%9C%B0%E5%9D%80%E6%98%AF%E4%B9%8B%E5%89%8D%E5%9C%A8github%E4%B8%8A%E7%9A%84%E5%88%9B%E5%BB%BA%E7%9A%84%E4%BB%93%E5%BA%93%E5%90%8D%E7%A7%B0%EF%BC%8C%E8%BE%93%E5%85%A5%E4%BD%A0%E7%9A%84github%E7%94%A8%E6%88%B7%E5%90%8D">http://MuTouTQ.github.io/，该访问地址是之前在github上的创建的仓库名称，输入你的github用户名</a> + .github.io</p>
+<h2 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h2><ul>
+<li><strong>创建CNAME文件</strong> 我们要一个 CNAME 文件（文件名叫 CNAME，文件没有后缀，里面的内容为你购买的域名，不要以http以及www等前缀，只需域名本身即可，如：mutouspace.cn。这个CNAME可以你先建一个txt文件，把后缀名去掉），把该文件放在 G:\TerryBlog 目录下。</li>
+<li><strong>获取Github的ip地址</strong> 实际获取的是你github上博客项目的ip（即：MuTouTQ.github.io），打开命令窗口，输入【ping MuTouTQ.github.io】来查看ip地址，并记录下来</li>
+<li><strong>添加DNS Service记录</strong> 我的域名是腾讯云上买的，用的腾讯云的域名解析，将ip地址和你买的域名绑定就好了，域名解析后需要等待几分钟才能被访问</li>
+</ul>
+<p>   <img src="http://olg3gwtbm.bkt.clouddn.com/yuming.png" loading="lazy"></p>
+<p>   <strong>补充：</strong></p>
+<p>   如果你做完域名解析后，还是没法用你的域名访问，可以这项修改下：</p>
+<p>   打开你的Git Hub下的MuTouTQ.github.io仓库，找到Settings，点进去</p>
+<p>   <img src="http://olg3gwtbm.bkt.clouddn.com/gitset.png" loading="lazy"></p>
+<p>   点进去后，找到这里，填入你的域名：mutouspace.cn   点击：SAVE  等一会就可以访问了。</p>
+<p>   <img src="http://olg3gwtbm.bkt.clouddn.com/gp.png" loading="lazy"></p>
+<p>   到此为止，我们的博客就成功配置完了！</p>
+<h1 id="发表一篇文章"><a href="#发表一篇文章" class="headerlink" title="发表一篇文章"></a>发表一篇文章</h1><ol>
+<li><p>在G:\TerryBlog 路径下Git Bash执行命令： <code>hexo new &quot;my new post&quot;</code></p>
+</li>
+<li><p>在G:\TerryBlog\source_post中打开my-new-post.md，打开方式使用记事本或notepad++（推荐：MarkdownPad）。</p>
+<p>hexo中写文章使用的是Markdown，没接触过的可以看下Markdown语法说明.</p>
+<p>   title: my new post #可以改成中文的，如“新文章”<br>   date: 2015-04-08 22:56:29 #发表日期，一般不改动<br>   categories: blog #文章文类<br>   tags: [博客，文章] #文章标签，多于一项时用这种格式，只有一项时使用tags: blog</p>
+<p>   #这里是正文，用markdown写，你可以选择写一段显示在首页的简介后，加上</p>
+   <!--more-->
+<p>   #在<!--more-->之前的内容会显示在首页，之后的内容会被隐藏，当游客点击Read more才能看到。</p>
+</li>
+<li><p>写完文章后，你可以使用1. hexo g生成静态文件。2. hexo s在本地预览效果。3.hexo d同步到github，然后使用<a href="mutouspace.cn">mutouspace.cn</a>进行访问。</p>
+</li>
+</ol>
+<h1 id="HEXO插入图片"><a href="#HEXO插入图片" class="headerlink" title="HEXO插入图片"></a>HEXO插入图片</h1><p>第一步：安装插件，在 <code>hexo</code> 根目录打开 <code>Git Bash</code> ,执行<br><code>npm install hexo-asset-image --save</code><br>第二步：打开 <code>hexo</code> 的配置文件<code>_config.yml</code><br>找到 <code>post_asset_folder</code>，把这个选项从<code>false</code>改成<code>true</code><br>第三步：打开<code>/node_modules/hexo-asset-image/index.js</code><br>将内容更换为下面的代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">&#x27;use strict&#x27;;</span><br><span class="line">var cheerio = require(&#x27;cheerio&#x27;);</span><br><span class="line">// http://stackoverflow.com/questions/14480345/how-to-get-the-nth-occurrence-in-a-string</span><br><span class="line">function getPosition(str, m, i) &#123;</span><br><span class="line">  return str.split(m, i).join(m).length;</span><br><span class="line">&#125;</span><br><span class="line">var version = String(hexo.version).split(&#x27;.&#x27;);</span><br><span class="line">hexo.extend.filter.register(&#x27;after_post_render&#x27;, function(data)&#123;</span><br><span class="line">  var config = hexo.config;</span><br><span class="line">  if(config.post_asset_folder)&#123;</span><br><span class="line">        var link = data.permalink;</span><br><span class="line">    if(version.length &gt; 0 &amp;&amp; Number(version[0]) == 3)</span><br><span class="line">       var beginPos = getPosition(link, &#x27;/&#x27;, 1) + 1;</span><br><span class="line">    else</span><br><span class="line">       var beginPos = getPosition(link, &#x27;/&#x27;, 3) + 1;</span><br><span class="line">    // In hexo 3.1.1, the permalink of &quot;about&quot; page is like &quot;.../about/index.html&quot;.</span><br><span class="line">    var endPos = link.lastIndexOf(&#x27;/&#x27;) + 1;</span><br><span class="line">    link = link.substring(beginPos, endPos);</span><br><span class="line">    var toprocess = [&#x27;excerpt&#x27;, &#x27;more&#x27;, &#x27;content&#x27;];</span><br><span class="line">    for(var i = 0; i &lt; toprocess.length; i++)&#123;</span><br><span class="line">      var key = toprocess[i];</span><br><span class="line"> </span><br><span class="line">      var $ = cheerio.load(data[key], &#123;</span><br><span class="line">        ignoreWhitespace: false,</span><br><span class="line">        xmlMode: false,</span><br><span class="line">        lowerCaseTags: false,</span><br><span class="line">        decodeEntities: false</span><br><span class="line">      &#125;);</span><br><span class="line">      $(&#x27;img&#x27;).each(function()&#123;</span><br><span class="line">        if ($(this).attr(&#x27;src&#x27;))&#123;</span><br><span class="line">            // For windows style path, we replace &#x27;\&#x27; to &#x27;/&#x27;.</span><br><span class="line">            var src = $(this).attr(&#x27;src&#x27;).replace(&#x27;\\&#x27;, &#x27;/&#x27;);</span><br><span class="line">            if(!/http[s]*.*|\/\/.*/.test(src) &amp;&amp;</span><br><span class="line">               !/^\s*\//.test(src)) &#123;</span><br><span class="line">              // For &quot;about&quot; page, the first part of &quot;src&quot; can&#x27;t be removed.</span><br><span class="line">              // In addition, to support multi-level local directory.</span><br><span class="line">              var linkArray = link.split(&#x27;/&#x27;).filter(function(elem)&#123;</span><br><span class="line">                return elem != &#x27;&#x27;;</span><br><span class="line">              &#125;);</span><br><span class="line">              var srcArray = src.split(&#x27;/&#x27;).filter(function(elem)&#123;</span><br><span class="line">                return elem != &#x27;&#x27; &amp;&amp; elem != &#x27;.&#x27;;</span><br><span class="line">              &#125;);</span><br><span class="line">              if(srcArray.length &gt; 1)</span><br><span class="line">                srcArray.shift();</span><br><span class="line">              src = srcArray.join(&#x27;/&#x27;);</span><br><span class="line">              $(this).attr(&#x27;src&#x27;, config.root + link + src);</span><br><span class="line">              console.info&amp;&amp;console.info(&quot;update link as:--&gt;&quot;+config.root + link + src);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            console.info&amp;&amp;console.info(&quot;no src attr, skipped...&quot;);</span><br><span class="line">            console.info&amp;&amp;console.info($(this));</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">      data[key] = $.html();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>第四步：现在就可以插入图片了，比如 <code>hexo new post test</code> 之后<br>就在<code>source/_posts</code>生成<code>teest.md</code>文件和<code>test文件夹</code>，我们把要插入的图片复制到<code>test</code>文件夹内，<br>在<code>test.md</code>文件里面按<code>markdown</code>的标准写,（我的文件名是<code>test.jpeg</code>）比如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![这是代替图片的文字，随便写](test.jpeg)</span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h2 id="常用hexo命令"><a href="#常用hexo命令" class="headerlink" title="常用hexo命令"></a>常用hexo命令</h2><p>常见命令</p>
+<pre><code>hexo new &quot;postName&quot; #新建文章
+hexo new page &quot;pageName&quot; #新建页面
+hexo new post &quot;pageName&quot; #新建文章与文件夹
+hexo generate #生成静态页面至public目录
+hexo server #开启预览访问端口（默认端口4000，&#39;ctrl + c&#39;关闭server）
+hexo deploy #部署到GitHub
+hexo help  # 查看帮助
+hexo version  #查看Hexo的版本
+</code></pre>
+<p>缩写：</p>
+<pre><code>hexo n == hexo new
+hexo g == hexo generate
+hexo s == hexo server
+hexo d == hexo deploy
+</code></pre>
+<p>组合命令：</p>
+<pre><code>hexo s -g #生成并本地预览
+hexo d -g #生成并上传
+</code></pre>
+<h2 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h2><p>  可以访问我的git博客来查看效果： <a target="_blank" rel="noopener" href="https://tiantsing.github.io/">https://tiantsing.github.io/</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>   <a target="_blank" rel="noopener" href="http://www.jianshu.com/p/0a3cad3e8cdf">基于Hexo+Github Pages的博客搭建</a></p>
+<p>   <a target="_blank" rel="noopener" href="http://opiece.me/2015/04/09/hexo-guide/">使用Hexo搭建个人博客(基于hexo3.0)</a></p>
+<p>   <a target="_blank" rel="noopener" href="http://blog.liuxianan.com/build-blog-website-by-hexo-github.html#qian-yan">使用hexo+github搭建免费个人博客详细教程</a></p>
+</div></section><ul class="post-copyright"><li class="post-copyright-author"><strong>Post author: </strong>Terry Tian,tiantsing@126.com</li><li class="post-copyright-link"><strong>Post link: </strong><a href="http://tianqing.work/2017/02/18/%E4%BD%BF%E7%94%A8Hexo-github%E5%BB%BA%E8%AE%BE%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/" title="使用Hexo+github建设个人博客教程">http://tianqing.work/2017/02/18/%E4%BD%BF%E7%94%A8Hexo-github%E5%BB%BA%E8%AE%BE%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/</a></li><li class="post-copyright-license"><strong>Copyright Notice: </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><span class="icon iconify" data-icon="ri:creative-commons-line"></span><span class="icon iconify" data-icon="ri:creative-commons-by-line"></span><span class="icon iconify" data-icon="ri:creative-commons-nc-line"></span><span class="icon iconify" data-icon="ri:creative-commons-sa-line"></span></a> unless otherwise stated.</li></ul></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2017/03/22/JAVA%E5%AD%A6%E4%B9%A0%E4%B9%8BJUnit/" rel="prev" title="JAVA学习之JUnit"><span class="icon iconify" data-icon="ri:arrow-left-s-line"></span><span class="post-nav-text">JAVA学习之JUnit</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/2017/02/17/Java%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%8E%B0/" rel="next" title="Java单例模式的5种实现方法"><span class="post-nav-text">Java单例模式的5种实现方法</span><span class="icon iconify" data-icon="ri:arrow-right-s-line"></span></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>如果您有任何关于博客内容的相关讨论，欢迎前往 <a href="https://github.com/tiantsing/tiantsing.github.io/discussions" target="_blank">GitHub Discussions</a> 与我交流。</span><br><a class="hty-button hty-button--raised" id="github-issues" target="_blank" rel="noopener" href="https://github.com/YunYouJun/yunyoujun.github.io/issues?q=is:issue+使用Hexo+github建设个人博客教程">GitHub Issues</a><a class="hty-button hty-button--raised" id="github-discussions" target="_blank" rel="noopener" href="https://github.com/YunYouJun/yunyoujun.github.io/discussions/new">GitHub Discussions</a></div></div></main><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="https://beian.miit.gov.cn/" target="_blank">未备案1234567890</a></div><div class="copyright"><span>&copy; 2016 – 2022 </span><a class="with-love" id="animate" target="_blank" rel="noopener" href="https://github.com/tiantsing" title="小彩蛋"><span class="icon iconify" data-icon="ri:cloud-line"></span></a><span class="author"> Terry Tian</span></div><div class="powered"><span>Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> v5.4.2</span><span class="footer-separator">|</span><span>Theme - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.10.6</span></div><div class="footer-support"><span>本网站由</span><a class="footer-support-logo" href="https://www.upyun.com" target="blank" title="又拍云"><img height="30" src="https://cdn.yunyoujun.cn/img/logo/upyun-logo.png" alt="又拍云"></a><span>提供 CDN 加速</span></div></footer></div><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><span class="icon iconify" data-icon="ri:arrow-up-s-line"></span><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a></body></html>
